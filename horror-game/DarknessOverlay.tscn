@@ -5,7 +5,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_darkness"]
 shader = ExtResource("2_darkness_shader")
-shader_parameter/player_position = Vector2(0.5, 0.5)
+shader_parameter/player_position = Vector2(960, 540)
 shader_parameter/light_radius = 200.0
 shader_parameter/darkness_color = Color(0.05, 0.05, 0.1, 0.9)
 

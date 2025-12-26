@@ -22,12 +22,8 @@ func _process(delta: float) -> void:
 	if not player or not color_rect or not color_rect.material:
 		return
 	
-	# Get player position in screen coordinates (normalized 0-1)
-	var viewport_size = get_viewport().get_visible_rect().size
-	var player_screen_pos = player.global_position
+	# Use player's global position directly (no camera adjustment needed)
+	var player_pos = player.global_position
 	
-	# Convert to normalized coordinates
-	var normalized_pos = player_screen_pos / viewport_size
-	
-	# Update shader
-	color_rect.material.set_shader_parameter("player_position", normalized_pos)
+	# Update shader with actual world position
+	color_rect.material.set_shader_parameter("player_position", player_pos)
