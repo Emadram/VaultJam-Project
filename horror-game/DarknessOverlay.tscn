@@ -1,4 +1,24 @@
-[gd_scene format=3 uid="uid://darkness_overlay_001"]
+[gd_scene load_steps=3 format=3 uid="uid://darkness_overlay_001"]
 
-[node name="DarknessOverlay" type="CanvasModulate"]
-color = Color(0.15, 0.15, 0.2, 1)
+[ext_resource type="Script" path="res://DarknessOverlay.gd" id="1_darkness_script"]
+[ext_resource type="Shader" path="res://darkness.gdshader" id="2_darkness_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_darkness"]
+shader = ExtResource("2_darkness_shader")
+shader_parameter/player_position = Vector2(0.5, 0.5)
+shader_parameter/light_radius = 200.0
+shader_parameter/darkness_color = Color(0.05, 0.05, 0.1, 0.9)
+
+[node name="DarknessOverlay" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_darkness_script")
+light_radius = 200.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_darkness")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
