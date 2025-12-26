@@ -1,0 +1,62 @@
+# EditorConfig for VaultJam-Project (Godot + Python + Blender)
+# https://EditorConfig.org
+
+root = true
+
+# Default settings
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# Markdown files
+[*.md]
+trim_trailing_whitespace = false
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_size = 2
+
+# GDScript files (Godot)
+[*.gd]
+indent_style = tab
+indent_size = 4
+
+# Godot scene and resource files
+[*.{tscn,tres,godot}]
+indent_style = space
+indent_size = 2
+
+# Shader files (Godot)
+[*.{gdshader,shader}]
+indent_size = 4
+indent_style = space
+
+# Python files
+[*.py]
+indent_size = 4
+indent_style = space
+max_line_length = 88  # Black formatter default
+
+# Configuration files
+[*.{ini,cfg,toml}]
+indent_size = 2
+
+# Shell scripts
+[*.{sh,bash}]
+indent_size = 2
+indent_style = space
+end_of_line = lf
+
+# Makefiles
+[Makefile]
+indent_style = tab
+
