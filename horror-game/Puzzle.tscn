@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://puzzle_scene_001"]
+
+[ext_resource type="Script" path="res://Puzzle.gd" id="1_puzzle_logic"]
+[ext_resource type="Texture2D" uid="uid://symbols_tex_001" path="res://symbols.png" id="2_symbols_tex"]
+[ext_resource type="Script" path="res://PuzzleButton.gd" id="3_button_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_button"]
+size = Vector2(64, 64)
+
+[node name="Puzzle" type="Node2D"]
+script = ExtResource("1_puzzle_logic")
+
+[node name="FeedbackLabel" type="Label" parent="."]
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = -70.0
+text = "MEMORIZE..."
+horizontal_alignment = 1
+
+[node name="SolutionDisplay" type="Node2D" parent="."]
+position = Vector2(0, -50)
+
+[node name="Symbol0" type="Sprite2D" parent="SolutionDisplay"]
+position = Vector2(-80, 0)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Symbol1" type="Sprite2D" parent="SolutionDisplay"]
+position = Vector2(0, 0)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+
+[node name="Symbol2" type="Sprite2D" parent="SolutionDisplay"]
+position = Vector2(80, 0)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="InputButtons" type="Node2D" parent="."]
+position = Vector2(0, 50)
+
+[node name="Button0" type="Area2D" parent="InputButtons"]
+position = Vector2(-80, 0)
+script = ExtResource("3_button_script")
+index = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="InputButtons/Button0"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputButtons/Button0"]
+shape = SubResource("RectangleShape2D_button")
+
+[node name="Button1" type="Area2D" parent="InputButtons"]
+position = Vector2(0, 0)
+script = ExtResource("3_button_script")
+index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="InputButtons/Button1"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputButtons/Button1"]
+shape = SubResource("RectangleShape2D_button")
+
+[node name="Button2" type="Area2D" parent="InputButtons"]
+position = Vector2(80, 0)
+script = ExtResource("3_button_script")
+index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="InputButtons/Button2"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputButtons/Button2"]
+shape = SubResource("RectangleShape2D_button")
+
+[connection signal="pressed" from="InputButtons/Button0" to="." method="on_button_pressed"]
+[connection signal="pressed" from="InputButtons/Button1" to="." method="on_button_pressed"]
+[connection signal="pressed" from="InputButtons/Button2" to="." method="on_button_pressed"]
