@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://qlu7dasy0eiy" path="res://Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://darkness_overlay_001" path="res://DarknessOverlay.tscn" id="2_darkness"]
 [ext_resource type="PackedScene" uid="uid://fire_checkpoint_001" path="res://Fire.tscn" id="3_fire"]
+[ext_resource type="PackedScene" uid="uid://monster_ai_001" path="res://Monster.tscn" id="4_monster"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -19,6 +20,11 @@ player_path = NodePath("../Player")
 
 [node name="Fire" parent="." instance=ExtResource("3_fire")]
 position = Vector2(200, 200)
+
+[node name="Monster" parent="." instance=ExtResource("4_monster")]
+position = Vector2(1500, 800)
+player_path = NodePath("../Player")
+fire_path = NodePath("../Fire")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 20.0
