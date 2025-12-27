@@ -24,6 +24,8 @@ func _ready() -> void:
 			# Also need to know when it's relit, but the current Fire.gd doesn't emit "relit".
 			# I'll just check is_lit in process for simplicity or add the signal later.
 
+var activation_timer: float = 0.0
+@export var activation_delay: float = 0.8
 @export var light_radius_threshold: float = 220.0 # Slightly larger than light radius
 @onready var animated_sprite = $AnimatedSprite2D
 
