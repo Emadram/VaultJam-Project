@@ -75,11 +75,48 @@ position = Vector2(200, 550)
 position = Vector2(1750, 550)
 initial_duration = 999.0
 
+[node name="VictoryArea" type="Area2D" parent="EndFire"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFire/VictoryArea"]
+shape = SubResource("RectangleShape2D_wall")
+scale = Vector2(0.05, 1)
+
 [node name="DarknessOverlay" parent="." instance=ExtResource("6_darkness")]
 player_path = NodePath("../Player")
 light_radius = 250.0
 
+[node name="GameUI" type="CanvasLayer" parent="."]
+layer = 110
+
+[node name="FadeRect" type="ColorRect" parent="GameUI"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MessageLabel" type="Label" parent="GameUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -25.0
+offset_right = 200.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Instructions" type="CanvasLayer" parent="."]
+layer = 5
 
 [node name="Label" type="Label" parent="Instructions"]
 offset_left = 50.0
