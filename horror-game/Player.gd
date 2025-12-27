@@ -8,6 +8,8 @@ extends CharacterBody2D
 signal noise_emitted(level: float)
 var noise_level: float = 0.0
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 func _physics_process(delta: float) -> void:
 	# Quit on ESC key
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -24,6 +26,12 @@ func _physics_process(delta: float) -> void:
 	
 	# Set velocity
 	velocity = input_dir * current_speed
+	
+	# Update animation based on movement
+	if velocity.length() > 0:
+		animated_sprite.play("run")
+	else:
+		animated_sprite.play("idle")
 	
 	# Emit noise when running
 	noise_level = 1.0 if is_running else 0.0
