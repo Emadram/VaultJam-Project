@@ -29,8 +29,8 @@ func light_fire() -> void:
 	is_lit = true
 	timer.start(current_duration)
 	
-	# Visual feedback - full brightness
-	sprite.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	# Visual feedback - Amber Glow #FFAC2E
+	sprite.modulate = Color("#FFAC2E")
 
 func extinguish_fire() -> void:
 	if not is_lit:
@@ -39,8 +39,9 @@ func extinguish_fire() -> void:
 	is_lit = false
 	timer.stop()
 	
-	# Visual feedback - dimmed
-	sprite.modulate = Color(0.3, 0.3, 0.3, 0.5)
+	# Visual feedback - Cool Slate mid-tone #2D344B
+	sprite.modulate = Color("#2D344B")
+	sprite.modulate.a = 0.5
 	
 	# Emit signal
 	fire_extinguished.emit()
@@ -74,8 +75,10 @@ func _apply_flicker() -> void:
 	var pulse = 1.0 + (sin(Time.get_ticks_msec() * 0.001 * flicker_speed) * flicker_intensity)
 	sprite.scale = Vector2(0.2, 0.2) * pulse
 	
-	# Dim slightly as it dies
-	sprite.modulate.a = lerp(1.0, 0.6, ratio)
+	# Shift from soft yellow to deep amber as it dies
+	var fire_color = Color("#FFE082").lerp(Color("#FF4E24"), ratio)
+	sprite.modulate = fire_color
+	sprite.modulate.a = lerp(1.0, 0.7, ratio)
 
 func _on_timer_timeout() -> void:
 	extinguish_fire()
