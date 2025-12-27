@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # Movement speeds
-@export var walk_speed: float = 150.0
-@export var run_speed: float = 250.0
+@export var walk_speed: float = 100.0
+@export var run_speed: float = 180.0
 
 # Noise emission
 signal noise_emitted(level: float)

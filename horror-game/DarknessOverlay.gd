@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 	if not player or not color_rect or not color_rect.material:
 		return
 	
-	# Update position and radius
-	color_rect.material.set_shader_parameter("player_position", player.global_position)
+	# Update position and radius (convert world to screen coordinates)
+	var screen_pos = get_viewport_transform() * player.global_position
+	color_rect.material.set_shader_parameter("player_position", screen_pos)
 	color_rect.material.set_shader_parameter("light_radius", light_radius)

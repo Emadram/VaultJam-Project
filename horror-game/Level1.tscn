@@ -12,14 +12,32 @@
 [ext_resource type="Texture2D" uid="uid://bg_layer_3" path="res://castle_assets/3.png" id="10_cat3"]
 [ext_resource type="Texture2D" uid="uid://bg_layer_4" path="res://castle_assets/4.png" id="11_cat4"]
 [ext_resource type="Texture2D" uid="uid://bg_layer_5" path="res://castle_assets/5.png" id="12_cat5"]
+[ext_resource type="Texture2D" uid="uid://dracula_decoration" path="res://castle_assets/Dracula's Castle(320X180).png" id="13_drac"]
+[ext_resource type="Texture2D" uid="uid://destructibles" path="res://destructible_assets.png" id="14_props"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
 size = Vector2(4000, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_box"]
+atlas = ExtResource("14_props")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_barrel"]
+atlas = ExtResource("14_props")
+region = Rect2(128, 0, 32, 32)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_level_script")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="DecorationLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 1)
+
+[node name="Dracula" type="Sprite2D" parent="ParallaxBackground/DecorationLayer"]
+position = Vector2(1920, 200)
+scale = Vector2(4, 4)
+texture = ExtResource("13_drac")
 
 [node name="Layer5" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1920, 0)
@@ -75,6 +93,23 @@ texture = ExtResource("7_cat0")
 centered = false
 
 [node name="World" type="Node2D" parent="."]
+
+[node name="Props" type="Node2D" parent="World"]
+
+[node name="Box1" type="Sprite2D" parent="World/Props"]
+position = Vector2(800, 600)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_box")
+
+[node name="Barrel1" type="Sprite2D" parent="World/Props"]
+position = Vector2(1500, 500)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_barrel")
+
+[node name="Box2" type="Sprite2D" parent="World/Props"]
+position = Vector2(2500, 650)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_box")
 
 [node name="Floor" type="ColorRect" parent="World"]
 offset_top = 400.0
