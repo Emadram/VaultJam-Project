@@ -6,26 +6,50 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_monster"]
 radius = 24.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_monster1"]
+atlas = ExtResource("2_monster_idle")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_monster2"]
+atlas = ExtResource("2_monster_idle")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_monster3"]
+atlas = ExtResource("2_monster_idle")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_monster4"]
+atlas = ExtResource("2_monster_idle")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_monster5"]
+atlas = ExtResource("2_monster_idle")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_monster6"]
+atlas = ExtResource("2_monster_idle")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_monster"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_monster_idle")
+"texture": SubResource("AtlasTexture_monster1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_monster_idle")
+"texture": SubResource("AtlasTexture_monster2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_monster_idle")
+"texture": SubResource("AtlasTexture_monster3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_monster_idle")
+"texture": SubResource("AtlasTexture_monster4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_monster_idle")
+"texture": SubResource("AtlasTexture_monster5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_monster_idle")
+"texture": SubResource("AtlasTexture_monster6")
 }],
 "loop": true,
 "name": &"idle",
