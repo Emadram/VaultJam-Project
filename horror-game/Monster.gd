@@ -24,21 +24,28 @@ func _ready() -> void:
 			# Also need to know when it's relit, but the current Fire.gd doesn't emit "relit".
 			# I'll just check is_lit in process for simplicity or add the signal later.
 
+var activation_timer: float = 0.0
+@export var activation_delay: float = 0.8
+
 func _physics_process(delta: float) -> void:
 	# Check darkness state from fire node directly if valid
 	var is_dark = true
 	if is_instance_valid(fire_node):
-		# Assuming Fire.gd has 'is_lit' property
 		if fire_node.get("is_lit"):
 			is_dark = false
+			activation_timer = 0.0 # Reset delay when light exists
 	
 	# Determine if monster should move
-	# Active if: It is dark OR Noise is detected
 	if is_dark or noise_detected:
+		# Add a slight delay before movement starts in darkness
+		if is_dark and activation_timer < activation_delay:
+			activation_timer += delta
+			return
+			
 		if is_instance_valid(player):
 			var direction = (player.global_position - global_position).normalized()
 			velocity = direction * speed
-			rotation = direction.angle() # Face player
+			rotation = lerp_angle(rotation, direction.angle(), 0.1) # Smoother rotation
 			move_and_slide()
 			
 			# Simple collision handling for killing

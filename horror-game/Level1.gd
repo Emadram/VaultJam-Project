@@ -28,10 +28,21 @@ func _ready() -> void:
 	exit_door.get_node("CollisionShape2D").disabled = false
 	exit_door.visible = true
 
+@onready var darkness_overlay = $DarknessOverlay
+
 func _process(_delta: float) -> void:
-	# Check for monster contact manually in the level loop if needed, 
-	# but Player.die() is already called by Monster.gd.
-	# We'll listen for when the player is "dead" (hidden/removed).
+	# Proximity Effect: Shrink light radius when monster is close
+	if is_instance_valid(player) and is_instance_valid(monster):
+		var dist = player.global_position.distance_to(monster.global_position)
+		var target_radius = 250.0 # Default
+		if dist < 400.0:
+			# Shrink radius as monster gets closer (min 100)
+			target_radius = lerp(100.0, 250.0, (dist - 100.0) / 300.0)
+		
+		# Smoothly change radius
+		darkness_overlay.light_radius = lerp(darkness_overlay.light_radius, target_radius, 0.1)
+
+	# Check for player death
 	if not is_instance_valid(player) and not game_over:
 		_on_death("The darkness claimed you.")
 

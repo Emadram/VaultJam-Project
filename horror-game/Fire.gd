@@ -59,5 +59,23 @@ func reset_player_at_checkpoint(player: Node2D) -> void:
 func get_time_remaining() -> float:
 	return timer.time_left if is_lit else 0.0
 
+func _process(_delta: float) -> void:
+	if is_lit:
+		_apply_flicker()
+
+func _apply_flicker() -> void:
+	var time_left = get_time_remaining()
+	var ratio = 1.0 - (time_left / current_duration)
+	
+	# Flicker faster and more intensely as time runs out
+	var flicker_speed = 10.0 + (ratio * 20.0)
+	var flicker_intensity = 0.05 + (ratio * 0.15)
+	
+	var pulse = 1.0 + (sin(Time.get_ticks_msec() * 0.001 * flicker_speed) * flicker_intensity)
+	sprite.scale = Vector2(0.2, 0.2) * pulse
+	
+	# Dim slightly as it dies
+	sprite.modulate.a = lerp(1.0, 0.6, ratio)
+
 func _on_timer_timeout() -> void:
 	extinguish_fire()

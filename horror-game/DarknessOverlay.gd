@@ -22,8 +22,6 @@ func _process(delta: float) -> void:
 	if not player or not color_rect or not color_rect.material:
 		return
 	
-	# Use player's global position directly (no camera adjustment needed)
-	var player_pos = player.global_position
-	
-	# Update shader with actual world position
-	color_rect.material.set_shader_parameter("player_position", player_pos)
+	# Update position and radius
+	color_rect.material.set_shader_parameter("player_position", player.global_position)
+	color_rect.material.set_shader_parameter("light_radius", light_radius)
