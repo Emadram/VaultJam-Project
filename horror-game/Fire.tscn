@@ -46,6 +46,7 @@ animations = [{
 script = ExtResource("1_fire_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.5, 1.2, 0.8, 1)
 sprite_frames = SubResource("SpriteFrames_fire")
 autoplay = "default"
 
