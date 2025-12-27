@@ -22,7 +22,6 @@ func _ready() -> void:
 	# Connections
 	puzzle.puzzle_solved.connect(_on_puzzle_solved)
 	puzzle.puzzle_failed.connect(_on_puzzle_failed)
-	fire_start.fire_extinguished.connect(_on_death.bind("The light failed you."))
 	victory_area.body_entered.connect(_on_victory)
 	
 	# Initial Setup
