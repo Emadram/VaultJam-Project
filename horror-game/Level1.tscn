@@ -28,17 +28,47 @@ offset_bottom = 700.0
 mouse_filter = 2
 color = Color(0.082, 0.098, 0.16, 1)
 
+[node name="FloorTopEdge" type="ColorRect" parent="World/Floor"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 2.0
+color = Color(0.176, 0.204, 0.294, 1)
+
 [node name="TopWall" type="StaticBody2D" parent="World"]
 position = Vector2(960, 350)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/TopWall"]
 shape = SubResource("RectangleShape2D_wall")
 
+[node name="WallSprite" type="ColorRect" parent="World/TopWall"]
+offset_left = -960.0
+offset_top = -50.0
+offset_right = 960.0
+offset_bottom = 50.0
+color = Color(0.012, 0.016, 0.035, 1)
+
+[node name="WallHighlight" type="ColorRect" parent="World/TopWall/WallSprite"]
+layout_mode = 0
+offset_top = 46.0
+offset_right = 1920.0
+offset_bottom = 50.0
+color = Color(0.957, 0.957, 0.976, 0.15)
+
 [node name="BottomWall" type="StaticBody2D" parent="World"]
 position = Vector2(960, 750)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BottomWall"]
-shape = SubResource("RectangleShape2D_wall")
+[node name="WallSprite" type="ColorRect" parent="World/BottomWall"]
+offset_left = -960.0
+offset_top = -50.0
+offset_right = 960.0
+offset_bottom = 50.0
+color = Color(0.012, 0.016, 0.035, 1)
+
+[node name="WallHighlight" type="ColorRect" parent="World/BottomWall/WallSprite"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 4.0
+color = Color(0.957, 0.957, 0.976, 0.15)
 
 [node name="ExitDoor" type="StaticBody2D" parent="World"]
 position = Vector2(1500, 550)
