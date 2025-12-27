@@ -24,8 +24,8 @@ func _ready() -> void:
 			# Also need to know when it's relit, but the current Fire.gd doesn't emit "relit".
 			# I'll just check is_lit in process for simplicity or add the signal later.
 
-var activation_timer: float = 0.0
-@export var activation_delay: float = 0.8
+@export var light_radius_threshold: float = 220.0 # Slightly larger than light radius
+@onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
 	# Check darkness state from fire node directly if valid
@@ -34,6 +34,22 @@ func _physics_process(delta: float) -> void:
 		if fire_node.get("is_lit"):
 			is_dark = false
 			activation_timer = 0.0 # Reset delay when light exists
+	
+	# Visibility Logic:
+	# If dark, check if player is close enough (within light radius).
+	if is_dark:
+		if is_instance_valid(player):
+			var dist = global_position.distance_to(player.global_position)
+			# Invisible if outside light radius
+			visible = dist <= light_radius_threshold
+			# Reset activation if invisible to prevent "ghost" movement
+			if not visible:
+				activation_timer = 0.0
+				return # Stop processing movement if invisible
+		else:
+			visible = false
+	else:
+		visible = true # Always visible if lights are on
 	
 	# Determine if monster should move
 	if is_dark or noise_detected:
@@ -45,7 +61,12 @@ func _physics_process(delta: float) -> void:
 		if is_instance_valid(player):
 			var direction = (player.global_position - global_position).normalized()
 			velocity = direction * speed
-			rotation = lerp_angle(rotation, direction.angle(), 0.1) # Smoother rotation
+			
+			# Rotation Fix: Flip instead of rotating
+			if direction.x != 0:
+				animated_sprite.flip_h = direction.x < 0
+			rotation = 0 # Ensure upright
+			
 			move_and_slide()
 			
 			# Simple collision handling for killing

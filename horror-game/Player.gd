@@ -27,9 +27,12 @@ func _physics_process(delta: float) -> void:
 	# Set velocity
 	velocity = input_dir * current_speed
 	
-	# Update animation based on movement
-	if velocity.length() > 0:
+	# Update animation based on INPUT (prevents jitter on collision)
+	if input_dir.length() > 0:
 		animated_sprite.play("run")
+		# Flip sprite based on horizontal movement
+		if input_dir.x != 0:
+			animated_sprite.flip_h = input_dir.x < 0
 	else:
 		animated_sprite.play("idle")
 	
@@ -42,4 +45,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die() -> void:
+	set_physics_process(false) # Stop movement
+	animated_sprite.play("die")
+	await animated_sprite.animation_finished
 	queue_free()

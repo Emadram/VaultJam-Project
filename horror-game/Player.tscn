@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Player.gd" id="1_m8yho"]
 [ext_resource type="Texture2D" path="res://player_idle.png" id="2_idle"]
 [ext_resource type="Texture2D" path="res://player_run.png" id="3_run"]
+[ext_resource type="Texture2D" path="res://die.png" id="4_die"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abc123"]
 radius = 16.0
@@ -40,8 +41,38 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("3_run")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_die1"]
+atlas = ExtResource("4_die")
+region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_die2"]
+atlas = ExtResource("4_die")
+region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_die3"]
+atlas = ExtResource("4_die")
+region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_die4"]
+atlas = ExtResource("4_die")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_die1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_die2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_die3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_die4")
+}],
+"loop": false,
+"name": &"die",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_idle1")
