@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=3 uid="uid://level_1_scene"]
+
+[ext_resource type="Script" path="res://Level1.gd" id="1_level_script"]
+[ext_resource type="PackedScene" uid="uid://qlu7dasy0eiy" path="res://Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://fire_checkpoint_001" path="res://Fire.tscn" id="3_fire"]
+[ext_resource type="PackedScene" uid="uid://puzzle_scene_001" path="res://Puzzle.tscn" id="4_puzzle"]
+[ext_resource type="PackedScene" uid="uid://monster_ai_001" path="res://Monster.tscn" id="5_monster"]
+[ext_resource type="PackedScene" uid="uid://darkness_overlay_001" path="res://DarknessOverlay.tscn" id="6_darkness"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
+size = Vector2(2000, 100)
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_level_script")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.02, 0.02, 0.05, 1)
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Floor" type="ColorRect" parent="World"]
+offset_top = 400.0
+offset_right = 1920.0
+offset_bottom = 700.0
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="TopWall" type="StaticBody2D" parent="World"]
+position = Vector2(960, 350)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/TopWall"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="BottomWall" type="StaticBody2D" parent="World"]
+position = Vector2(960, 750)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BottomWall"]
+shape = SubResource("RectangleShape2D_wall")
+
+[node name="ExitDoor" type="StaticBody2D" parent="World"]
+position = Vector2(1500, 550)
+
+[node name="ColorRect" type="ColorRect" parent="World/ExitDoor"]
+offset_left = -20.0
+offset_top = -150.0
+offset_right = 20.0
+offset_bottom = 150.0
+color = Color(0.4, 0.2, 0.1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/ExitDoor"]
+shape = SubResource("RectangleShape2D_wall")
+scale = Vector2(0.02, 3)
+
+[node name="FireStart" parent="." instance=ExtResource("3_fire")]
+position = Vector2(200, 550)
+initial_duration = 20.0
+
+[node name="Puzzle" parent="." instance=ExtResource("4_puzzle")]
+position = Vector2(1000, 550)
+fire_path = NodePath("../FireStart")
+
+[node name="Monster" parent="." instance=ExtResource("5_monster")]
+position = Vector2(700, 550)
+player_path = NodePath("../Player")
+fire_path = NodePath("../FireStart")
+speed = 100.0
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(200, 550)
+
+[node name="EndFire" parent="." instance=ExtResource("3_fire")]
+position = Vector2(1750, 550)
+initial_duration = 999.0
+
+[node name="DarknessOverlay" parent="." instance=ExtResource("6_darkness")]
+player_path = NodePath("../Player")
+light_radius = 250.0
+
+[node name="Instructions" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Instructions"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 150.0
+text = "LEVEL 1: THE MEMORY HALL
+1. Memorize code at the puzzle (East)
+2. Wait for darkness
+3. Input code
+4. Reach the final flame"
