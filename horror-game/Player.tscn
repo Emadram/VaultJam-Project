@@ -84,7 +84,17 @@ script = ExtResource("1_m8yho")
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
 autoplay = "idle"
-scale = Vector2(2.5, 2.5)
+scale = Vector2(1.8, 1.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_abc123")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+limit_left = 0
+limit_right = 3840
+limit_bottom = 1080
+limit_smoothed = true

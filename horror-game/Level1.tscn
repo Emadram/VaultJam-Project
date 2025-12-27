@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://level_1_scene"]
+[gd_scene load_steps=15 format=3 uid="uid://level_1_scene"]
 
 [ext_resource type="Script" path="res://Level1.gd" id="1_level_script"]
 [ext_resource type="PackedScene" uid="uid://qlu7dasy0eiy" path="res://Player.tscn" id="2_player"]
@@ -6,72 +6,117 @@
 [ext_resource type="PackedScene" uid="uid://puzzle_scene_001" path="res://Puzzle.tscn" id="4_puzzle"]
 [ext_resource type="PackedScene" uid="uid://monster_ai_001" path="res://Monster.tscn" id="5_monster"]
 [ext_resource type="PackedScene" uid="uid://darkness_overlay_001" path="res://DarknessOverlay.tscn" id="6_darkness"]
+[ext_resource type="Texture2D" uid="uid://bg_layer_0" path="res://castle_assets/0.png" id="7_cat0"]
+[ext_resource type="Texture2D" uid="uid://bg_layer_1" path="res://castle_assets/1.png" id="8_cat1"]
+[ext_resource type="Texture2D" uid="uid://bg_layer_2" path="res://castle_assets/2.png" id="9_cat2"]
+[ext_resource type="Texture2D" uid="uid://bg_layer_3" path="res://castle_assets/3.png" id="10_cat3"]
+[ext_resource type="Texture2D" uid="uid://bg_layer_4" path="res://castle_assets/4.png" id="11_cat4"]
+[ext_resource type="Texture2D" uid="uid://bg_layer_5" path="res://castle_assets/5.png" id="12_cat5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
-size = Vector2(2000, 100)
+size = Vector2(4000, 100)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_level_script")
 
-[node name="Background" type="ColorRect" parent="."]
-offset_right = 1920.0
-offset_bottom = 1080.0
-mouse_filter = 2
-color = Color(0.035, 0.039, 0.078, 1)
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Layer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer5"]
+scale = Vector2(6, 6)
+texture = ExtResource("12_cat5")
+centered = false
+
+[node name="Layer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer4"]
+scale = Vector2(6, 6)
+texture = ExtResource("11_cat4")
+centered = false
+
+[node name="Layer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer3"]
+scale = Vector2(6, 6)
+texture = ExtResource("10_cat3")
+centered = false
+
+[node name="Layer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer2"]
+scale = Vector2(6, 6)
+texture = ExtResource("9_cat2")
+centered = false
+
+[node name="Layer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer1"]
+scale = Vector2(6, 6)
+texture = ExtResource("8_cat1")
+centered = false
+
+[node name="Layer0" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer0"]
+scale = Vector2(6, 6)
+texture = ExtResource("7_cat0")
+centered = false
 
 [node name="World" type="Node2D" parent="."]
 
 [node name="Floor" type="ColorRect" parent="World"]
 offset_top = 400.0
-offset_right = 1920.0
-offset_bottom = 700.0
+offset_right = 3840.0
+offset_bottom = 1080.0
 mouse_filter = 2
 color = Color(0.082, 0.098, 0.16, 1)
 
 [node name="FloorTopEdge" type="ColorRect" parent="World/Floor"]
 layout_mode = 0
-offset_right = 1920.0
+offset_right = 3840.0
 offset_bottom = 2.0
 color = Color(0.176, 0.204, 0.294, 1)
 
 [node name="TopWall" type="StaticBody2D" parent="World"]
-position = Vector2(960, 350)
+position = Vector2(1920, 350)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/TopWall"]
 shape = SubResource("RectangleShape2D_wall")
 
 [node name="WallSprite" type="ColorRect" parent="World/TopWall"]
-offset_left = -960.0
+offset_left = -1920.0
 offset_top = -50.0
-offset_right = 960.0
+offset_right = 1920.0
 offset_bottom = 50.0
 color = Color(0.012, 0.016, 0.035, 1)
 
 [node name="WallHighlight" type="ColorRect" parent="World/TopWall/WallSprite"]
 layout_mode = 0
 offset_top = 46.0
-offset_right = 1920.0
+offset_right = 3840.0
 offset_bottom = 50.0
 color = Color(0.957, 0.957, 0.976, 0.15)
 
 [node name="BottomWall" type="StaticBody2D" parent="World"]
-position = Vector2(960, 750)
+position = Vector2(1920, 1130)
 
-[node name="WallSprite" type="ColorRect" parent="World/BottomWall"]
-offset_left = -960.0
-offset_top = -50.0
-offset_right = 960.0
-offset_bottom = 50.0
-color = Color(0.012, 0.016, 0.035, 1)
-
-[node name="WallHighlight" type="ColorRect" parent="World/BottomWall/WallSprite"]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 4.0
-color = Color(0.957, 0.957, 0.976, 0.15)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/BottomWall"]
+shape = SubResource("RectangleShape2D_wall")
 
 [node name="ExitDoor" type="StaticBody2D" parent="World"]
-position = Vector2(1500, 550)
+position = Vector2(3000, 550)
 
 [node name="ColorRect" type="ColorRect" parent="World/ExitDoor"]
 offset_left = -20.0
@@ -85,25 +130,25 @@ shape = SubResource("RectangleShape2D_wall")
 scale = Vector2(0.02, 3)
 
 [node name="FireStart" parent="." instance=ExtResource("3_fire")]
-position = Vector2(200, 550)
-initial_duration = 20.0
+position = Vector2(400, 550)
+initial_duration = 30.0
 
 [node name="Puzzle" parent="." instance=ExtResource("4_puzzle")]
-position = Vector2(1000, 550)
+position = Vector2(1800, 550)
 fire_path = NodePath("../FireStart")
 
 [node name="Monster" parent="." instance=ExtResource("5_monster")]
 modulate = Color(0.27, 0.51, 0.66, 1)
-position = Vector2(700, 550)
+position = Vector2(1400, 550)
 player_path = NodePath("../Player")
 fire_path = NodePath("../FireStart")
-speed = 100.0
+speed = 120.0
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(200, 550)
+position = Vector2(400, 550)
 
 [node name="EndFire" parent="." instance=ExtResource("3_fire")]
-position = Vector2(1750, 550)
+position = Vector2(3500, 550)
 initial_duration = 999.0
 
 [node name="VictoryArea" type="Area2D" parent="EndFire"]
@@ -115,7 +160,7 @@ scale = Vector2(0.05, 1)
 
 [node name="DarknessOverlay" parent="." instance=ExtResource("6_darkness")]
 player_path = NodePath("../Player")
-light_radius = 250.0
+light_radius = 400.0
 
 [node name="GameUI" type="CanvasLayer" parent="."]
 layer = 110
@@ -125,6 +170,7 @@ modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+order = 0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
