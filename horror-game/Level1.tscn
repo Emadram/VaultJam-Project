@@ -59,9 +59,15 @@ scale_amount_max = 4.0
 color = Color(0.8, 0.9, 1, 0.1)
 color_ramp = SubResource("Gradient_dust")
 
-[node name="BaseBackground" type="ColorRect" parent="."]
-offset_right = 3840.0
-offset_bottom = 1080.0
+[node name="BackgroundCanvas" type="CanvasLayer" parent="."]
+layer = -101
+
+[node name="BaseBackground" type="ColorRect" parent="BackgroundCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0.01, 0.01, 0.02, 1)
 
