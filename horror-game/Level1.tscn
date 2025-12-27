@@ -37,14 +37,6 @@ color = Color(0.01, 0.01, 0.02, 1)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="DecorationLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.05, 1)
-
-[node name="Dracula" type="Sprite2D" parent="ParallaxBackground/DecorationLayer"]
-position = Vector2(1920, 200)
-scale = Vector2(4, 4)
-texture = ExtResource("13_drac")
-
 [node name="Layer5" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1920, 0)
 
@@ -97,6 +89,15 @@ motion_mirroring = Vector2(1920, 0)
 scale = Vector2(6, 6)
 texture = ExtResource("7_cat0")
 centered = false
+
+[node name="DecorationLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 1)
+
+[node name="Dracula" type="Sprite2D" parent="ParallaxBackground/DecorationLayer"]
+modulate = Color(0.35, 0.35, 0.45, 0.25)
+position = Vector2(1920, 100)
+scale = Vector2(5, 5)
+texture = ExtResource("13_drac")
 
 [node name="World" type="Node2D" parent="."]
 
