@@ -131,8 +131,8 @@ motion_scale = Vector2(0.05, 1)
 
 [node name="Dracula" type="Sprite2D" parent="ParallaxBackground/DecorationLayer"]
 modulate = Color(0.35, 0.35, 0.45, 0.25)
-position = Vector2(1920, 100)
-scale = Vector2(5, 5)
+position = Vector2(3000, 80)
+scale = Vector2(6, 6)
 texture = ExtResource("13_drac")
 
 [node name="World" type="Node2D" parent="."]
@@ -140,19 +140,34 @@ texture = ExtResource("13_drac")
 [node name="Props" type="Node2D" parent="World"]
 
 [node name="Box1" type="Sprite2D" parent="World/Props"]
-position = Vector2(800, 600)
+position = Vector2(650, 600)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_box")
 
 [node name="Barrel1" type="Sprite2D" parent="World/Props"]
-position = Vector2(1500, 500)
+position = Vector2(1000, 580)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_barrel")
 
 [node name="Box2" type="Sprite2D" parent="World/Props"]
-position = Vector2(2500, 650)
+position = Vector2(1600, 620)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_box")
+
+[node name="Barrel2" type="Sprite2D" parent="World/Props"]
+position = Vector2(2200, 590)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_barrel")
+
+[node name="Box3" type="Sprite2D" parent="World/Props"]
+position = Vector2(2900, 605)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_box")
+
+[node name="Barrel3" type="Sprite2D" parent="World/Props"]
+position = Vector2(3300, 585)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_barrel")
 
 [node name="Floor" type="ColorRect" parent="World"]
 offset_top = 400.0
@@ -211,6 +226,16 @@ scale = Vector2(0.02, 3)
 position = Vector2(400, 550)
 initial_duration = 30.0
 
+[node name="FireMid1" parent="." instance=ExtResource("3_fire")]
+position = Vector2(1200, 550)
+initial_duration = 25.0
+duration_decay = 3.0
+
+[node name="FireMid2" parent="." instance=ExtResource("3_fire")]
+position = Vector2(2400, 550)
+initial_duration = 20.0
+duration_decay = 2.5
+
 [node name="Puzzle" parent="." instance=ExtResource("4_puzzle")]
 position = Vector2(1800, 550)
 fire_path = NodePath("../FireStart")
@@ -221,6 +246,7 @@ position = Vector2(1400, 550)
 player_path = NodePath("../Player")
 fire_path = NodePath("../FireStart")
 speed = 120.0
+patrol_waypoints = [Vector2(800, 550), Vector2(1800, 550), Vector2(2800, 550), Vector2(1800, 550)]
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
 position = Vector2(400, 550)

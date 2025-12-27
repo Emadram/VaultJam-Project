@@ -4,7 +4,7 @@ signal puzzle_solved
 signal puzzle_failed(noise_level)
 
 @export var fire_path: NodePath
-@export var correct_sequence: Array[int] = [0, 1, 2] # Default sequence
+@export var correct_sequence: Array[int] = [0, 1, 2, 3] # 4-symbol sequence for better challenge
 
 var current_input: Array[int] = []
 var fire_node: Node2D

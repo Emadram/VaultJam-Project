@@ -35,16 +35,22 @@ region_enabled = true
 region_rect = Rect2(64, 0, 64, 64)
 
 [node name="Symbol2" type="Sprite2D" parent="SolutionDisplay"]
-position = Vector2(80, 0)
+position = Vector2(0, 0)
 texture = ExtResource("2_symbols_tex")
 region_enabled = true
 region_rect = Rect2(128, 0, 64, 64)
+
+[node name="Symbol3" type="Sprite2D" parent="SolutionDisplay"]
+position = Vector2(80, 0)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(192, 0, 64, 64)
 
 [node name="InputButtons" type="Node2D" parent="."]
 position = Vector2(0, 50)
 
 [node name="Button0" type="Area2D" parent="InputButtons"]
-position = Vector2(-80, 0)
+position = Vector2(-120, 0)
 script = ExtResource("3_button_script")
 index = 0
 
@@ -58,7 +64,7 @@ region_rect = Rect2(0, 0, 64, 64)
 shape = SubResource("RectangleShape2D_button")
 
 [node name="Button1" type="Area2D" parent="InputButtons"]
-position = Vector2(0, 0)
+position = Vector2(-40, 0)
 script = ExtResource("3_button_script")
 index = 1
 
@@ -72,7 +78,7 @@ region_rect = Rect2(64, 0, 64, 64)
 shape = SubResource("RectangleShape2D_button")
 
 [node name="Button2" type="Area2D" parent="InputButtons"]
-position = Vector2(80, 0)
+position = Vector2(40, 0)
 script = ExtResource("3_button_script")
 index = 2
 
@@ -85,6 +91,21 @@ region_rect = Rect2(128, 0, 64, 64)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InputButtons/Button2"]
 shape = SubResource("RectangleShape2D_button")
 
+[node name="Button3" type="Area2D" parent="InputButtons"]
+position = Vector2(120, 0)
+script = ExtResource("3_button_script")
+index = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="InputButtons/Button3"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+texture = ExtResource("2_symbols_tex")
+region_enabled = true
+region_rect = Rect2(192, 0, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputButtons/Button3"]
+shape = SubResource("RectangleShape2D_button")
+
 [connection signal="pressed" from="InputButtons/Button0" to="." method="on_button_pressed"]
 [connection signal="pressed" from="InputButtons/Button1" to="." method="on_button_pressed"]
 [connection signal="pressed" from="InputButtons/Button2" to="." method="on_button_pressed"]
+[connection signal="pressed" from="InputButtons/Button3" to="." method="on_button_pressed"]

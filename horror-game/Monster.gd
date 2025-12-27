@@ -27,6 +27,9 @@ func _ready() -> void:
 var activation_timer: float = 0.0
 @export var activation_delay: float = 0.8
 @export var light_radius_threshold: float = 220.0 # Slightly larger than light radius
+@export var patrol_waypoints: Array[Vector2] = [] # Waypoints for patrol
+var current_waypoint_index: int = 0
+var patrol_speed: float = 60.0 # Slower when patrolling
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
@@ -53,8 +56,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		visible = true # Always visible if lights are on
 	
-	# Determine if monster should move
+	# Determine behavior: Patrol when lit, Chase when dark
 	if is_dark or noise_detected:
+		# CHASE MODE
 		# Add a slight delay before movement starts in darkness
 		if is_dark and activation_timer < activation_delay:
 			activation_timer += delta
@@ -77,6 +81,23 @@ func _physics_process(delta: float) -> void:
 				var collider = collision.get_collider()
 				if collider == player and collider.has_method("die"):
 					collider.die()
+	elif patrol_waypoints.size() > 0 and not is_dark:
+		# PATROL MODE (when lit)
+		var target_waypoint = patrol_waypoints[current_waypoint_index]
+		var direction = (target_waypoint - global_position).normalized()
+		
+		# Check if reached waypoint
+		if global_position.distance_to(target_waypoint) < 50.0:
+			current_waypoint_index = (current_waypoint_index + 1) % patrol_waypoints.size()
+		
+		velocity = direction * patrol_speed
+		
+		# Flip sprite based on direction
+		if direction.x != 0:
+			animated_sprite.flip_h = direction.x < 0
+		rotation = 0
+		
+		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
 
