@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bg_layer_3" path="res://castle_assets/3.png" id="10_cat3"]
 [ext_resource type="Texture2D" uid="uid://bg_layer_4" path="res://castle_assets/4.png" id="11_cat4"]
 [ext_resource type="Texture2D" uid="uid://bg_layer_5" path="res://castle_assets/5.png" id="12_cat5"]
-[ext_resource type="Texture2D" uid="uid://dracula_decoration" path="res://castle_assets/Dracula's Castle(320X180).png" id="13_drac"]
-[ext_resource type="Texture2D" uid="uid://destructibles" path="res://destructible_assets.png" id="14_props"]
+[ext_resource type="Texture2D" path="res://castle_assets/Dracula's Castle(320X180).png" id="13_drac"]
+[ext_resource type="Texture2D" path="res://destructible_assets.png" id="14_props"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall"]
 size = Vector2(4000, 100)

@@ -23,6 +23,6 @@ func _process(delta: float) -> void:
 		return
 	
 	# Update position and radius (convert world to screen coordinates)
-	var screen_pos = get_viewport_transform() * player.global_position
+	var screen_pos = player.get_global_transform_with_canvas().origin
 	color_rect.material.set_shader_parameter("player_position", screen_pos)
 	color_rect.material.set_shader_parameter("light_radius", light_radius)
