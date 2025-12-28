@@ -1,62 +1,142 @@
-[gd_scene load_steps=4 format=3 uid="uid://monster_ai_001"]
+[gd_scene load_steps=30 format=3 uid="uid://monster_ai_001"]
 
 [ext_resource type="Script" path="res://Monster.gd" id="1_monster_script"]
-[ext_resource type="Texture2D" uid="uid://monster_idle_sprite" path="res://monster_idle.png" id="2_monster_idle"]
+[ext_resource type="Texture2D" path="res://monster_anims/idle.png" id="2_idle"]
+[ext_resource type="Texture2D" path="res://monster_anims/run.png" id="3_run"]
+[ext_resource type="Texture2D" path="res://monster_anims/attack.png" id="4_attack"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_monster"]
-radius = 24.0
+[sub_resource type="AtlasTexture" id="idle1"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 0, 63, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monster1"]
-atlas = ExtResource("2_monster_idle")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle2"]
+atlas = ExtResource("2_idle")
+region = Rect2(63, 0, 63, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monster2"]
-atlas = ExtResource("2_monster_idle")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle3"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 65, 63, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monster3"]
-atlas = ExtResource("2_monster_idle")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle4"]
+atlas = ExtResource("2_idle")
+region = Rect2(63, 65, 63, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monster4"]
-atlas = ExtResource("2_monster_idle")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle5"]
+atlas = ExtResource("2_idle")
+region = Rect2(0, 130, 63, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monster5"]
-atlas = ExtResource("2_monster_idle")
-region = Rect2(128, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle6"]
+atlas = ExtResource("2_idle")
+region = Rect2(63, 130, 63, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_monster6"]
-atlas = ExtResource("2_monster_idle")
-region = Rect2(160, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="run1"]
+atlas = ExtResource("3_run")
+region = Rect2(0, 0, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run2"]
+atlas = ExtResource("3_run")
+region = Rect2(63, 0, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run3"]
+atlas = ExtResource("3_run")
+region = Rect2(0, 62, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run4"]
+atlas = ExtResource("3_run")
+region = Rect2(63, 62, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run5"]
+atlas = ExtResource("3_run")
+region = Rect2(0, 124, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run6"]
+atlas = ExtResource("3_run")
+region = Rect2(63, 124, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run7"]
+atlas = ExtResource("3_run")
+region = Rect2(0, 186, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run8"]
+atlas = ExtResource("3_run")
+region = Rect2(63, 186, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run9"]
+atlas = ExtResource("3_run")
+region = Rect2(0, 248, 63, 62)
+
+[sub_resource type="AtlasTexture" id="run10"]
+atlas = ExtResource("3_run")
+region = Rect2(63, 248, 63, 62)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_monster"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_monster1")
+"texture": SubResource("idle1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_monster2")
+"texture": SubResource("idle2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_monster3")
+"texture": SubResource("idle3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_monster4")
+"texture": SubResource("idle4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_monster5")
+"texture": SubResource("idle5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_monster6")
+"texture": SubResource("idle6")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 6.0
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("run1")
+}, {
+"duration": 1.0,
+"texture": SubResource("run2")
+}, {
+"duration": 1.0,
+"texture": SubResource("run3")
+}, {
+"duration": 1.0,
+"texture": SubResource("run4")
+}, {
+"duration": 1.0,
+"texture": SubResource("run5")
+}, {
+"duration": 1.0,
+"texture": SubResource("run6")
+}, {
+"duration": 1.0,
+"texture": SubResource("run7")
+}, {
+"duration": 1.0,
+"texture": SubResource("run8")
+}, {
+"duration": 1.0,
+"texture": SubResource("run9")
+}, {
+"duration": 1.0,
+"texture": SubResource("run10")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
 }]
 
-[node name="Monster" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_monster"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 300.0
+
+[node name="Monster" type="CharacterBody2D" groups=["monsters"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_monster_script")
@@ -65,7 +145,16 @@ script = ExtResource("1_monster_script")
 sprite_frames = SubResource("SpriteFrames_monster")
 animation = &"idle"
 autoplay = "idle"
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_monster")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detection")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

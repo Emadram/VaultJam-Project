@@ -1,12 +1,11 @@
 extends Control
 
 func _ready() -> void:
-	# Focus start button
-	$VBoxContainer/StartButton.grab_focus()
-
-func _on_start_pressed() -> void:
-	# Start Level 1
-	GameManager.start_level(1)
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
+	# Connect buttons
+	$VBoxContainer/Level1Button.pressed.connect(func(): GameManager.start_level(1))
+	$VBoxContainer/Level2Button.pressed.connect(func(): GameManager.start_level(2))
+	$VBoxContainer/Level3Button.pressed.connect(func(): GameManager.start_level(3))
+	$VBoxContainer/QuitButton.pressed.connect(func(): get_tree().quit())
+	
+	# Focus first level button
+	$VBoxContainer/Level1Button.grab_focus()

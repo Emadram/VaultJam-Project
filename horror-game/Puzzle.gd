@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	_on_light_start(Vector2.ZERO) # Initialize logic as Lit
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Fallback if signals aren't enough or need strict state sync
 	if is_instance_valid(fire_node):
 		var fire_lit = fire_node.get("is_lit")

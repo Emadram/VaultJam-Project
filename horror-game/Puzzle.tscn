@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://puzzle_scene_001"]
 
 [ext_resource type="Script" path="res://Puzzle.gd" id="1_puzzle_logic"]
-[ext_resource type="Texture2D" uid="uid://symbols_tex_001" path="res://symbols.png" id="2_symbols_tex"]
+[ext_resource type="Texture2D" path="res://symbols.png" id="2_symbols_tex"]
 [ext_resource type="Script" path="res://PuzzleButton.gd" id="3_button_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_button"]

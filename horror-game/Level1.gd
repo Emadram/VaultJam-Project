@@ -7,8 +7,7 @@ extends Node2D
 @onready var player = $Player
 @onready var monster = $Monster
 @onready var victory_area = $EndFire/VictoryArea
-@onready var fade_rect = $GameUI/FadeRect
-@onready var message_label = $GameUI/MessageLabel
+@onready var hud = $HUD
 
 var game_over: bool = false
 var puzzle_completed: bool = false
@@ -17,7 +16,14 @@ func _ready() -> void:
 	# Increase pressure based on deaths (use GameManager now)
 	var death_count = GameManager.get_level_death_count()
 	fire_start.initial_duration = max(fire_start.min_duration, fire_start.initial_duration - (death_count * 5.0))
-	monster.speed += (death_count * 15.0)
+	
+	if is_instance_valid(monster):
+		monster.speed += (death_count * 15.0)
+	
+	# Show instructions
+	if hud:
+		hud.show_message("Light fires. Avoid the dark.\nFind the 4 symbols.", 5.0)
+		hud.fade_from_black() 
 	
 	# Connections
 	puzzle.puzzle_solved.connect(_on_puzzle_solved)
@@ -53,10 +59,13 @@ func _on_puzzle_solved() -> void:
 	var tween = create_tween()
 	tween.tween_property(exit_door, "modulate:a", 0.0, 1.0)
 	tween.tween_callback(exit_door.hide)
+	
+	hud.show_message("The passage opens...", 3.0)
 
 func _on_puzzle_failed(_noise) -> void:
 	# Mistakes increase pressure - monster speed up slightly
-	monster.speed += 20.0
+	if is_instance_valid(monster):
+		monster.speed += 20.0
 
 func _on_death(reason: String) -> void:
 	if game_over: return
@@ -65,19 +74,11 @@ func _on_death(reason: String) -> void:
 	# Notify GameManager
 	GameManager.on_player_death()
 	
-	# Visuals
-	message_label.text = reason
-	var death_count = GameManager.get_level_death_count()
-	var subtitle = "\nDeath #%d" % death_count
-	message_label.text += subtitle
+	hud.show_message(reason, 2.0)
+	await hud.fade_to_black(1.0)
 	
-	var tween = create_tween()
-	tween.tween_property(fade_rect, "modulate:a", 1.0, 1.0)
-	
-	await get_tree().create_timer(2.0).timeout
-	
-	# Retry through GameManager
-	GameManager.restart_current_level()
+	# Load death scene
+	get_tree().change_scene_to_file("res://DeathScene.tscn")
 
 func _on_victory(body: Node2D) -> void:
 	if body == player and not game_over:
@@ -85,12 +86,8 @@ func _on_victory(body: Node2D) -> void:
 		player.set_physics_process(false) # Stop player
 		
 		# Victory message
-		message_label.text = "Level Complete!\n%s" % GameManager.get_level_name()
-		
-		var tween = create_tween()
-		tween.tween_property(fade_rect, "modulate:a", 1.0, 2.0)
-		
-		await tween.finished
+		hud.show_message("Level Complete!\n%s" % GameManager.get_level_name(), 3.0)
+		await hud.fade_to_black(2.0)
 		
 		# Notify GameManager
 		GameManager.on_level_complete()

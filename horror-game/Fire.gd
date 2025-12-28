@@ -20,7 +20,7 @@ var checkpoint_position: Vector2
 func _ready() -> void:
 	current_duration = initial_duration
 	checkpoint_position = global_position
-	timer.timeout.connect(_on_timer_timeout)
+	# Connection is defined in Fire.tscn; avoid double-connecting here.
 	
 	# Start with fire lit
 	light_fire()
@@ -28,7 +28,7 @@ func _ready() -> void:
 func light_fire() -> void:
 	is_lit = true
 	timer.start(current_duration)
-	sprite.play("default")
+	sprite.play("burn")
 	
 	# Visual feedback - Amber Glow #FFAC2E
 	sprite.modulate = Color("#FFAC2E")

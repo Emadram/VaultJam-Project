@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://death_scene"]
+
+[ext_resource type="Script" path="res://DeathScene.gd" id="1_death_script"]
+
+[sub_resource type="Environment" id="Environment_death"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.5
+glow_blend_mode = 2
+adjustment_enabled = true
+adjustment_contrast = 1.4
+adjustment_saturation = 0.6
+adjustment_brightness = 0.7
+
+[node name="DeathScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_death_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_death")
+
+[node name="Background" type="ColorRect" parent="."]
+modulate = Color(1, 0, 0, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0, 0, 1)
+
+[node name="DeathMessage" type="VBoxContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -100.0
+offset_right = 300.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="DeathMessage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "CONSUMED"
+horizontal_alignment = 1
+
+[node name="Reason" type="Label" parent="DeathMessage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "The darkness claimed you."
+horizontal_alignment = 1
+
+[node name="DeathCount" type="Label" parent="DeathMessage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Death #1"
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="DeathMessage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Running makes noise and attracts the monster..."
+horizontal_alignment = 1
+autowrap_mode = 2

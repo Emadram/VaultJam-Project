@@ -1,132 +1,127 @@
-[gd_scene load_steps=5 format=3 uid="uid://qlu7dasy0eiy"]
+[gd_scene load_steps=50 format=3 uid="uid://player_character_001"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_m8yho"]
-[ext_resource type="Texture2D" path="res://player_idle.png" id="2_idle"]
-[ext_resource type="Texture2D" path="res://player_run.png" id="3_run"]
-[ext_resource type="Texture2D" path="res://die.png" id="4_die"]
+[ext_resource type="Script" path="res://Player.gd" id="1_player_script"]
+[ext_resource type="Texture2D" path="res://player_anims/animatedCharacter1_grid.png" id="2_grid"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_abc123"]
-radius = 16.0
-height = 48.0
+[sub_resource type="AtlasTexture" id="idle1"]
+atlas = ExtResource("2_grid")
+region = Rect2(0, 0, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle1"]
-atlas = ExtResource("2_idle")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle2"]
+atlas = ExtResource("2_grid")
+region = Rect2(88, 0, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle2"]
-atlas = ExtResource("2_idle")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle3"]
+atlas = ExtResource("2_grid")
+region = Rect2(176, 0, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle3"]
-atlas = ExtResource("2_idle")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle4"]
+atlas = ExtResource("2_grid")
+region = Rect2(264, 0, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_idle4"]
-atlas = ExtResource("2_idle")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle5"]
+atlas = ExtResource("2_grid")
+region = Rect2(352, 0, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_run1"]
-atlas = ExtResource("3_run")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="idle6"]
+atlas = ExtResource("2_grid")
+region = Rect2(440, 0, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_run2"]
-atlas = ExtResource("3_run")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="run1"]
+atlas = ExtResource("2_grid")
+region = Rect2(0, 80, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_run3"]
-atlas = ExtResource("3_run")
-region = Rect2(64, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="run2"]
+atlas = ExtResource("2_grid")
+region = Rect2(88, 80, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_run4"]
-atlas = ExtResource("3_run")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="run3"]
+atlas = ExtResource("2_grid")
+region = Rect2(176, 80, 88, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_die1"]
-atlas = ExtResource("4_die")
-region = Rect2(0, 0, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_die2"]
-atlas = ExtResource("4_die")
-region = Rect2(32, 0, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_die3"]
-atlas = ExtResource("4_die")
-region = Rect2(64, 0, 32, 32)
-[sub_resource type="AtlasTexture" id="AtlasTexture_die4"]
-atlas = ExtResource("4_die")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="run4"]
+atlas = ExtResource("2_grid")
+region = Rect2(264, 80, 88, 80)
+
+[sub_resource type="AtlasTexture" id="run5"]
+atlas = ExtResource("2_grid")
+region = Rect2(352, 80, 88, 80)
+
+[sub_resource type="AtlasTexture" id="run6"]
+atlas = ExtResource("2_grid")
+region = Rect2(440, 80, 88, 80)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_die1")
+"texture": SubResource("idle1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_die2")
+"texture": SubResource("idle2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_die3")
+"texture": SubResource("idle3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_die4")
-}],
-"loop": false,
-"name": &"die",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle1")
+"texture": SubResource("idle4")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle2")
+"texture": SubResource("idle5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_idle3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idle4")
+"texture": SubResource("idle6")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_run1")
+"texture": SubResource("run1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_run2")
+"texture": SubResource("run2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_run3")
+"texture": SubResource("run3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_run4")
+"texture": SubResource("run4")
+}, {
+"duration": 1.0,
+"texture": SubResource("run5")
+}, {
+"duration": 1.0,
+"texture": SubResource("run6")
 }],
 "loop": true,
 "name": &"run",
-"speed": 8.0
+"speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_light"]
+radius = 500.0
+
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_m8yho")
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1_player_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
 autoplay = "idle"
-scale = Vector2(1.8, 1.8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_abc123")
+shape = SubResource("CircleShape2D_player")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.6, 1.6)
-position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-limit_left = 0
-limit_top = 0
-limit_right = 3840
-limit_bottom = 1080
-limit_smoothed = true
+[node name="LightDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightDetector"]
+shape = SubResource("CircleShape2D_light")
